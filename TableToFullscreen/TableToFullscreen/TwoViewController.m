@@ -37,6 +37,12 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    // 不具合?
+    // 1番目のUICollectionViewFlowLayout を使っていると2番目に定義したUICollectionViewFlowLayoutのdelegate を参照してしまう
+    // LayoutToLayout を使うとUICollectionViewFlowLayoutのdelegateが元にもどらないのかもしれない
+    // 以上の理由でUICollectionViewFlowLayoutDelegateを使ったレイアウト調整は危険かもしれない
+    
+    
     return CGSizeMake(320.0f, indexPath.row == 0 ? 85.0f : 65.0f );
 }
 

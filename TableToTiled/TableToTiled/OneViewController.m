@@ -21,7 +21,12 @@
     return [self.collectionView numberOfItemsInSection:0];
 }
 
-// collectionViewのスクロール可能領域の大きさを返す
+
+/**
+ *  collectionViewのスクロール可能領域の大きさを返す
+ *
+ *  @return サイズを返す
+ */
 - (CGSize)collectionViewContentSize
 {
     CGSize size = [super collectionViewContentSize];
@@ -29,6 +34,13 @@
     return CGSizeMake(size.width,20.0f + self.itemSize.height * self.count + self.footerReferenceSize.height );
 }
 
+/**
+ *  行に対する矩形を取得
+ *
+ *  @param row 行番号
+ *
+ *  @return 行に対する矩形サイズ
+ */
 - (CGRect) rectForRow:(NSInteger)row
 {
     CGFloat top = self.itemSize.height * row;
@@ -52,8 +64,9 @@
     
     for (NSInteger i = 0; i < self.count; i++){
         CGRect rectHittest = [self rectForRow:i];
-        // 矩形を取得
+            // 矩形を取得
         
+        // 含まれる矩形を計算
         if( CGRectIntersectsRect(rect, rectHittest) ){
             [array addObject:[NSIndexPath indexPathForItem:i inSection:0]];
         }
@@ -88,8 +101,16 @@
     return attr;
 }
 
+/**
+ *  フッターサイズを計算する
+ *
+ *  @param section セクション番号
+ *
+ *  @return フッターの矩形を返す
+ */
 - (CGRect) footerRectForSection:(NSInteger)section
 {
+    // フッターサイズを計算
     return section == 0 ? CGRectMake(.0f, 20.0f + self.itemSize.height * self.count , self.footerReferenceSize.width , self.footerReferenceSize.height) : CGRectZero;
 }
 
@@ -97,6 +118,7 @@
 {
     UICollectionViewLayoutAttributes *attr = nil;
     
+    // セクション番号と要素種類が計算対象かを調べる
     if( indexPath.section == 0 && [kind isEqualToString:UICollectionElementKindSectionFooter] ){
         attr = [UICollectionViewLayoutAttributes layoutAttributesForSupplementaryViewOfKind:kind withIndexPath:indexPath];
         attr.frame = CGRectMake(.0f, 20.0f + self.itemSize.height * self.count , self.collectionViewContentSize.width , self.footerReferenceSize.height);
@@ -143,10 +165,6 @@
     
     self.edgesForExtendedLayout = UIRectEdgeAll;
         // 回り込み有効
-    
-    // オリジナルレイアウトを保存
-    self.toolbarItems = @[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],[[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStyleBordered target:self action:@selector(fireChangeLayout:)]];
-
 }
 
 - (void)didReceiveMemoryWarning

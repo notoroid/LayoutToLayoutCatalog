@@ -225,27 +225,34 @@
     if( [self.navigationController.topViewController isKindOfClass:[OneViewController class]] ){
         UIButton* button = [sender isKindOfClass:[UIButton class]] ? sender : nil;
         NSIndexPath* indexPath = nil;
+            // フルスクリーンとするindexPath
         
+        // タップされたボタンの親cellを取得
         NSArray *visibleCells = [self.collectionView visibleCells];
         for (UICollectionViewCell *cell in visibleCells) {
             UIButton *testButton = (UIButton *)[cell viewWithTag:2];
             if( button == testButton ){
+                // パスを指定
                 indexPath = [self.collectionView indexPathForCell:cell];
                 break;
             }
         }
         
+        // TwoViewController のインスタンスを生成.
+        //　TwoViewController のインスタンスを生成時と同時にレイアウトを追加する
         TwoViewController *twoViewController = [[TwoViewController alloc] initWithCollectionViewLayout:[[ExpandTableLayout alloc] initWithHeight:65.0f fullscreenIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]]];
         twoViewController.useLayoutToLayoutNavigationTransitions = YES;
+            // 2つめのuseLayoutToLayoutNavigationTransitions は YESとする
         
         self.collectionView.bounces = NO;
-        
+            // バウンドしないように変更
         
         [self.navigationController pushViewController:twoViewController animated:YES];
     }else{
         self.collectionView.bounces = YES;
-        
-        
+            // boundを有効とする
+ 
+        // 戻る時はpopするだけ
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
     
