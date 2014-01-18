@@ -249,19 +249,6 @@
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
     
-//    if( _fullScreen == NO /*self.collectionView.pagingEnabled != YES*/ ){
-//        _fullScreen = YES;
-//
-//        [self.collectionView setCollectionViewLayout:[[ExpandTableLayout alloc] initWithHeight:65.0f fullscreenIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] animated:YES completion:^(BOOL finished) {
-//
-//        }];
-//    }else{
-//        _fullScreen = NO;
-//        
-//        [self.collectionView setCollectionViewLayout:self.originalLayout animated:YES completion:^(BOOL finished) {
-//
-//        }];
-//    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath

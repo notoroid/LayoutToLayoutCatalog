@@ -38,9 +38,4 @@
     // Dispose of any resources that can be recreated.
 }
 
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return CGSizeMake(80.0f,80.0f);
-//}
-
 @end

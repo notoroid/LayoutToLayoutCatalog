@@ -203,7 +203,6 @@
 
         [self.navigationController pushViewController:collectionViewController animated:YES];
         
-//        UICollectionViewFlowLayout
     }else{
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
@@ -214,12 +213,7 @@
     
     UICollectionViewController* collectionViewController = [segue.destinationViewController isKindOfClass:[UICollectionViewController class]] ? segue.destinationViewController : nil;
     collectionViewController.useLayoutToLayoutNavigationTransitions = YES;
-    
-    
 }
-
-
-
 
 
 @end
